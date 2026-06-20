@@ -5,7 +5,7 @@ def primeNumbers(n):
     else:
         i = 5
         while i*i <= n:
-            if n % i == 0 or n % i+2 == 0:
+            if n % i == 0 or n % (i+2) == 0:
                 return("Not a prime number")
             i += 6
         return("Its a prime number")
