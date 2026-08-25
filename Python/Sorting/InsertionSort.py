@@ -1,12 +1,14 @@
 def InsertionSort(l):
-    for silceEnd in range(len(l)):
+    for i in range(1,len(l)):
+        temp = l[i]
+        j = i - 1
 
-        pos = silceEnd
+        while j>= 0 and l[j] > temp:
+            l[j+1] = l[j]
+            j-= 1
 
-        while pos > 0 and l[pos] < l[pos - 1]:
-            (l[pos], l[pos - 1]) = (l[pos - 1], l[pos])
-            pos = pos - 1
-    
+        l[j+1] = temp
+
     return l
 
 list1 = [9,2,4,7,3,8,5]

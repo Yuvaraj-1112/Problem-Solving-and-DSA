@@ -1,37 +1,45 @@
-def MergeSort(l,left,right):
+def MergeSort(arr,srt,end):
 
-    if right - left <= 1:
-        return(l[left:right])
+    if end - srt <= 1:
+        return
     
-    if right - left > 1:
-        mid = (left + right) // 2
+    mid = (srt + end) // 2
 
-        L = MergeSort(l,left,mid)
-        R = MergeSort(l,mid,right)
-        
-    return(merge(L,R))
+    MergeSort(arr, srt,mid)
+    MergeSort(arr,mid,end)
 
-def merge(A,B):
-    (C,m,n) = ([],len(A),len(B))
-    (i,j) = (0,0)
+    return(merge(arr,srt,mid,end))
 
-    while i+j < m+n:
-        if i == m:
-            C.append(B[j])
-            j = j+1
+def merge(arr,srt,mid,end):
 
-        elif j == n:
-            C.append(A[i])
+    c = []
+    (i,j) = (srt,mid)
+
+    while i < mid and j < end:
+
+        if arr[i] <= arr[j]:
+            c.append(arr[i])
             i += 1
 
-        elif A[i] <= B[j] :
-            C.append(A[i])
-            i += 1  
+        else:
+            c.append(arr[j])
+            j += 1
 
-        elif B[j] < A[i]:
-            C.append(B[j])
-            j = j+1
-    return C
+    while i < mid:
+        c.append(arr[i])
+        i += 1
 
-a = [9,8,7,6,5,4,0,3,2,1]
-print(MergeSort(a,0,len(a)))
+    while j < end:
+        c.append(arr[j])
+        j += 1
+
+
+    for k in range(len(c)):
+        arr[srt + k] = c[k]
+
+
+    
+arr = [ num for num in range(50,0,-1)]
+
+MergeSort(arr,0,len(arr))
+print(arr)

@@ -1,21 +1,33 @@
-def QuickSort(l,left,right):
+def QuickSort(arr,srt,end):
 
-    if right - left <= 1:
-        return()
+    if srt < end:
+
+        pivot = Partition(arr,srt,end)
+        QuickSort(arr,srt,pivot-1)
+        QuickSort(arr,pivot+1,end)
+
+def Partition(a,srt,end):
+
+    piv_val = a[srt]
+
+    i = srt + 1
+    j = end
+
+    while i < j:
+        while i < end and a[i] <= piv_val:
+            i += 1
+
+        while j > srt and a[j] > piv_val:
+            j -= 1
+
+        if i < j:
+            a[i], a[j] = a[j],a[i]
+
+    a[srt],a[j] = a[j],a[srt]
+    return j
+
+a = [9,2,4,7,3,8,5]
+QuickSort(a,0,len(a) - 1)
+print(a)
+
     
-    small = left + 1
-
-    for big in range(left +1,right):
-        if l[big] <= l[left]:
-            (l[small], l[big]) = (l[big], l[small])
-            small += 1
-
-    (l[left], l[small - 1]) = (l[small - 1], l[left])
-
-    QuickSort(l,left, small -1)
-    QuickSort(l,small, right)
-
-    return l
-
-a = [9,8,7,6,5,4,0,3,2,1]
-print(QuickSort(a,0,len(a)))

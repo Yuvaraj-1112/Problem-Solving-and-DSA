@@ -1,13 +1,12 @@
 def SelectionSort(l):
-    for start in range(len(l)):
+    for i in range(len(l)):
+        min_val = i
 
-        minpos = start
-    
-        for i in range(start,len(l)):
-            if l[i] < l[minpos]:
-                minpos = i
-        
-        (l[start], l[minpos]) = (l[minpos], l[start])
+        for j in range(i+1, len(l)):
+            if l[j] < l[min_val]:
+                min_val = j
+
+        (l[i], l[min_val]) = (l[min_val], l[i])
 
     return l
 
